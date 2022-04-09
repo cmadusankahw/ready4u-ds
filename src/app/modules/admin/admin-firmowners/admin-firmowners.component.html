@@ -1,0 +1,126 @@
+<div class="pt-4">
+    <div class="text-center">
+        <h4>
+            <mat-icon>library_books</mat-icon>
+           <b> <span> Registered Firm Owners </span> </b>
+          </h4>
+          <br>
+    </div>
+         <hr>
+
+      <div class="mat-elevation-z8" *ngIf="firmOwners.length && !showUser">
+        <table class="table-responsive" mat-table [dataSource]="dataSource" matSort>
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > User ID </th>
+            <td mat-cell *matCellDef="let row"> {{row.user_id}} </td>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.first_name + ' ' + row.last_name}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Email </th>
+            <td mat-cell *matCellDef="let row"> {{row.email}}  </td>
+          </ng-container>
+      
+          <!-- Color Column -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Contact No </th>
+            <td mat-cell *matCellDef="let row" > {{row.contact_no}} </td>
+          </ng-container>
+
+            <!-- Color Column -->
+            <ng-container matColumnDef="firm">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header > Firm Owned </th>
+                <td mat-cell *matCellDef="let row" > {{row.firm.firm_name}} </td>
+              </ng-container>
+    
+    
+           <!-- Action Column -->
+           <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;"> REMOVE </th>
+            <td mat-cell *matCellDef="let row">
+              <button mdbBtn color="green" text="white" class="btn btn-sm text-center" style="border-radius: 30px;"
+              (click) ="cancelDialog.show()"  (click) ="selectedUser = row.user_id">
+                REMOVE USER
+              </button>
+             </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+      
+        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+      </div>
+      
+      <div class="text-center pd-top-min"  *ngIf="!firmOwners.length && !showUser">
+        No Registered Service Providers
+      </div>
+
+    
+
+</div>
+
+
+
+
+
+
+<!-- remove user dialog-->
+<div mdbModal #cancelDialog="mdbModal"
+class="modal fade top"
+id="frameModalTop" tabindex="-1" role="dialog"
+[config]="{ backdrop: false, ignoreBackdropClick: true }"
+  aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-notify modal-danger  modal-dialog-centered" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">Remove a service provider</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelDialog.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <p></p>
+            <p class="text-center">
+              <mdb-icon fas icon="ban" size="3x"></mdb-icon>
+            </p>
+          </div>
+
+          <div class="col-9 pt-3">
+            <h5>Are you sure want to remove this Service Provider?</h5>
+          </div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" class="waves-effect"
+        (click)="cancelDialog.hide()" (click)="removeSprovider(selectedUser)"
+        mdbWavesEffect>Remove User
+          <mdb-btn far icon="ban" class="ml-1"></mdb-btn>
+        </a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="cancelDialog.hide()"
+          data-dismiss="modal">I won't</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

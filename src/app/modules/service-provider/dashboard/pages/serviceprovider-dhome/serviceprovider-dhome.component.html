@@ -1,0 +1,102 @@
+<div class="container-fluid" >
+  <div class="text-center pt-5">
+    <h1 style="font-weight: bold; color:darkgreen;"><b> Hello! Welcome to Ready4U</b></h1>
+    <h3> Your New Orders will apper below </h3>
+    <hr>
+  </div>
+    <div class="currentOrder" *ngIf="currentOrder">
+        <div class="heading text-center pd-top">
+            <h3> <b> <mdb-icon fas icon="envelope"> </mdb-icon> You have a New Order </b></h3>
+        </div>
+        <hr>
+        <div class="res-order text-center">
+            <mat-expansion-panel  hideToggle>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Recieved Order: {{currentOrder.order_id}}
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Expand to view order details
+                    <mat-icon>map</mat-icon>
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+            
+                <div class="orderContent pd-top text-center">
+                    <h4><b>Order Decription:</b></h4>
+                    <p class="order-des"> {{currentOrder.description}}</p>
+                    <hr>
+                    <h4><b>Order Images:</b></h4>
+                    <div class="row text-center" class="res-imgs">
+                        <div class="col">
+                          <img [src] ="currentOrder.image1" style="width:100%; margin:10px;">
+                        </div>
+                        <div class="col">
+                          <img [src] ="currentOrder.image2" style="width:100%; margin:10px;">
+                        </div>
+                        <div class="col">
+                          <img [src] ="currentOrder.image3" style="width:100%; margin:10px;">
+                        </div>
+                    </div>
+                </div>
+            
+                <mat-action-row>
+                  <button mat-button color="green" (click)="acceptOrder()" routerLink="/sp/map"> Approve </button>
+                  <button mat-button color="warn" (click) = "rejectOrder()"> Cancel Order </button>
+                </mat-action-row>
+              </mat-expansion-panel>
+        </div>
+        <hr>
+
+    </div>
+    <div class="text-center pt-2" *ngIf ="!currentOrder">
+      <div class="heading text-center pd-top">
+          <h4> <b> <mdb-icon fas icon="envelope">s</mdb-icon> You have no current order </b> </h4>
+      </div>
+  </div>
+  <hr>
+
+    <div class="pt-2 chat">
+      <div class="text-center pt-2">
+        <p style="font-weight:bold; font-size:26px; color: darkgreen;"> Realtime Service requests.. </p>
+        <p> Have a chat with your service provider befor placing the order if they are available.</p>
+      </div>
+      <hr>
+      <hr>
+    <div class="row container-fluid">
+        <div class="well">
+            <div *ngFor="let item of messageArray">
+              <div class="row">
+                <div class="col-md-1">
+                </div>
+                <div class="col">
+                  <span><strong>{{item.user}} : </strong> </span><br>
+                  <span class="pt-1"> {{item.message}}</span>
+                </div>
+              </div>
+  
+            </div>
+        </div>
+    </div>
+    <div class="row pt-3">
+        <div class="col-md-9">
+          <mat-form-field style="width:100%">
+            <mat-label>
+              Type a message </mat-label>
+            <input matInput type="text"  [(ngModel)]="messageText" name="chat_msg">
+          </mat-form-field>
+  
+        </div>
+        <div class="col-md-3 text-center">
+                <button mdbBtn mdbWavesEffect type="button" color="green" class="btn btn-md pull-left" style="border-radius:30px;" (click)="sendMessage()">Send</button>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+    
+
+

@@ -1,0 +1,15 @@
+<div class="text-center pt-4 pb-2 ">
+    <h4 class="strong"><b> <mdb-icon fas icon="user-friends"> </mdb-icon> Overall Orders: </b></h4>
+  </div>
+  
+  <div style="display: block" *ngIf="orderData">
+    <canvas mdbChart
+        [chartType]="chartType"
+        [datasets]="chartDatasets"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [options]="chartOptions"
+        [legend]="true">
+    </canvas>
+  </div>
+  

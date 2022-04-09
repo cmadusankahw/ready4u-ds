@@ -1,0 +1,110 @@
+<section class="map-section">
+
+  <!-- map here-->
+  <div class="task-time text-center">
+      <div class="countdown">
+         {{hour <10 ? '0' + hour : hour }} : {{minute <10 ? '0' + minute : minute}}
+      </div>
+      <div class="amount-charged pt-4">
+        <span class="rs">Rs.</span> {{amount}}
+      </div><br><br>
+      <div class="amount-charged-2 pt-2" *ngIf="travelCharge > 0">
+        <span class="rs"> Travel Fee : Rs.</span> {{travelCharge }} Included
+      </div>
+  </div>
+
+  <!-- service provider stuff here-->
+  <div class="sp-details" *ngIf="order">
+
+            <div class="sp-names text-center">
+              <span class="sp-name">Now Working On : {{ order.task.task}}</span>
+            </div>
+              <!-- service provider stuff here-->
+    <div class="sp-details">
+      <div class="row">
+        <div class="col-md-7 sp-details" >
+          <table>
+              <tr >
+                <th>
+                <img src="{{order ? order.service_provider.profile_pic : './assets/images/noimg.png' }}" class="profile-img" style="width:80px;">
+              </th>
+              <th class="sp-names ml-1">
+                <span style="font-weight:17px;"> Service Provider:</span> <br>
+                <span class="sp-name pt-2"> {{order ? order.service_provider.service_provider_name : ' Loading..'}}
+                </span><br><p class="middle-sp"></p>
+              </th>
+              </tr>
+            </table>
+
+          </div>
+        <div class="col" class="sp-contact text-center">
+          <div class="container-fluid text-center">
+              <button mdbBtn mdbWavesEffect class="sp-btn" color="red" text="white"  outline="yes" (click) = "openBottomSheet()"> 
+                <i class="fa fa-phone" aria-hidden="true" ></i>  Safety Options
+              </button>
+              <button mdbBtn mdbWavesEffect class="sp-btn" color="green" text="white" outline="yes"  
+              (click) = "showProfile.show()">
+                <i class="fa fa-face" aria-hidden="true"></i> View Profile </button>
+              </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  
+<!--View Service Modal-->
+<div
+mdbModal
+#showProfile="mdbModal"
+class="modal fade"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myBasicModalLabel"
+[config]="{ backdrop: false, ignoreBackdropClick: true }"
+aria-hidden="true"
+
+>
+<div
+  class="modal-dialog modal-dialog-centered modal-lg"
+  role="document"
+  style="overflow-y: initial !important"
+>
+  <div class="modal-content" *ngIf="order">
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="showProfile.hide()"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title w-100" id="myModalLabel" >
+        <mat-icon>service</mat-icon>Hired Service Provider
+      </h4>
+    </div>
+
+    <div class="modal-body " style="height: 500px; overflow-y: auto;">
+
+      <app-sprovider-profile [isowner] = "false" [spId] = "order.service_provider.user_id"> </app-sprovider-profile>
+
+    </div>
+
+    <div class="modal-footer">
+      <button
+        mdbBtn
+        color="link"
+        (click)="showProfile.hide()"
+        mdbWavesEffect
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+

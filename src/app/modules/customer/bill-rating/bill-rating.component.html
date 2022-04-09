@@ -1,0 +1,147 @@
+
+<div class="container" id="content">
+
+    <!--order-->
+    <div *ngIf="order">
+    <div class="header-cls text-center pd-top">
+        <h3 style="font-size:30px; font-weight:bold; color:darkgreen;"><b>Receipt - order ID: {{ order.order_id }} </b></h3>
+        <hr>
+        <div class="row container-fluid pd-top-min">
+          <div class="col-md-6 left-top">
+              <b>Issued to: {{ order.customer.customer_name }} </b>
+          </div>
+          <div class="col-md-6 right-top" >
+            <b>{{ order.ordered_time.slice(0,16)}} </b>
+          </div>
+        </div>
+        <hr>
+      </div>
+  
+    <div class="middle-cls pd-top-min">
+      <table class="table-striped">
+        <thead>
+          <tr>
+            <th >
+              Description
+            </th>
+            <th >
+              Amount
+            </th>
+          </tr>
+        </thead>
+          <tbody>
+            <tr style="padding-bottom:50px;">
+              <td>
+                order for {{ order.service_provider.service_provider_name }} on  {{ order.service_category }} <br>
+                  <span> Rs. {{ order.task.rate }} {{order.task.rate_type}}(s) </span>
+                  <br> 
+              </td>
+              <td style="text-align:right;">
+                Rs. {{order.total_amount_charged}}
+              </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+              <td class="amounts" stylr="text-align:right;">
+                Total Paid:
+              </td>
+              <td class="amounts">
+                Rs. {{order.total_amount_charged }}
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  
+    <div class="footer-cls text-center pd-top">
+      <hr>
+      <p><b> Thank you for using ready4U! </b></p>
+        <br>
+      <br>
+      <p> <b>For any Inquries on your reservation, Please contact us on:
+        <a href="mailto:biguni@ready4u.com"> biguni@ready4u.com</a> </b></p>
+      <hr>
+    </div>
+  </div>
+
+</div>
+    <div class="container btns text-center" *ngIf="order">
+      <button  mdbBtn mdbWavesEffect color="green" style="border-radius:30px;"
+       (click) = "sendEmail('Your Service Order : ' + order.service_provider.service_provider_name)" (click)="printOrder('content','Order_Reciept')">
+        Print Note
+      </button>
+      <button  mdbBtn mdbWavesEffect color="red" style="border-radius:30px;" outline="yes"
+      (click) = "rateModal.show()">
+       Rate Service Provider
+     </button>
+      </div>
+
+
+      <!--send cancel request Modal-->
+<div
+mdbModal
+#rateModal="mdbModal"
+class="modal fade"
+tabindex="-1"
+role="dialog"
+aria-labelledby="myBasicModalLabel"
+[config]="{ backdrop: false, ignoreBackdropClick: true }"
+aria-hidden="true"
+
+
+>
+<div
+  class="modal-dialog modal-dialog-centered modal-lg"
+  role="document"
+  style="overflow-y: initial !important"
+>
+  <div class="modal-content"  >
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close pull-right"
+        aria-label="Close"
+        (click)="rateModal.hide()"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+      <h4 class="modal-title w-100" id="myModalLabel" >
+        <mat-icon>grade</mat-icon> Rate Service Provider
+      </h4>
+    </div>
+
+    <div class="modal-body" style="height: 450px; overflow-y: auto;">
+      <div class="container">
+      <div class="inner-content pt-3 text-center">
+          <img src="./assets/images/thumb.png" style="width:200px;">
+        <p style="font-weight:bold; color:darkgreen; font-size:22px;"><b> How was {{order.service_provider.service_provider_name }}'s  Service ?
+        </b></p>
+        <hr>
+     
+        <div class="rating text-center pt-4">
+            <ngb-rating [(rate)]="rating" max="5" >
+              <ng-template let-fill="fill" let-index="index">
+                <span class="star" [class.filled]="fill === 100">&#9733;</span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+          <hr>
+        <div class="btns text-center pt-3">
+          <button class="btn btn-md" mdbBtn mdbWavesEffect color="green"  style="border-radius:30px;" (click)="sendRating()" (click)="rateModal.hide()" >
+          Give Rating</button>
+          <button class="btn btn-md" mdbBtn mdbWavesEffect color="red"  outline="yes" style="border-radius:30px;"
+          (click) ="rateModal.hide()">
+            Not Now</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+  
+  
+  

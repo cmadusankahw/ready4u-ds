@@ -1,0 +1,111 @@
+<section class="map-section">
+
+  <!-- map here-->
+  <div class="map">
+
+    <agm-map  appDirectionsMap [showDirection]="this.displayDirections"
+    [origin]="origin"
+    [destination]="destination"
+
+    [zoom]="zoom"
+    [disableDefaultUI]="false">
+
+      <agm-marker
+            [latitude]="destination.latitude"
+            [longitude]="destination.longitude">
+      </agm-marker>
+      <agm-marker
+        [latitude]="recievedLocation.lat"
+        [longitude]="recievedLocation.lang"   ></agm-marker>
+      </agm-map>
+        
+  </div>
+
+  <!-- service provider details here-->
+  <div class="sp-details">
+    <div class="row">
+      <div class="col-md-8 sp-details" >
+        <table>
+            <tr >
+              <th>
+              <img src="./assets/images/spprofilephoto.jpg" class="profile-img">
+            </th>
+            <th class="sp-names" *ngIf="this.order">
+              <span class="sp-name"> {{order.customer.customer_name}}
+              </span><br><p class="middle-sp"></p>
+              <span class="sp-des">Address:</span>
+             <p class="est-arrival"> {{this.address ? this.address : 'Loading...'}} 
+             </p>
+            </th>
+            </tr>
+          </table>
+
+        </div>
+      <div class="col-md-4" class="sp-contact text-center">
+        <div class="container-fluid text-center">
+            <button mdbBtn mdbWavesEffect class="sp-btn" color="green" text="white" routerLink="/sp/task/time" (click) ="markArrival()">
+              <i class="fa fa-check-circle" aria-hidden="true"></i>  Mark Arrival
+            </button>
+            <button mdbBtn mdbWavesEffect class="sp-btn" color="red" text="white" outline="yes" (click)= "cancelDialog.show()"  >
+              <i class="fa fa-times-circle" aria-hidden="true"></i> Cancel Task
+              </button>
+            </div>
+        </div>
+
+    </div>
+  </div>
+  </section>
+
+
+  
+  
+<!-- cancel appointment confirmation-->
+<div mdbModal #cancelDialog="mdbModal"
+class="modal fade top"
+id="frameModalTop" tabindex="-1" role="dialog"
+[config]="{ backdrop: false, ignoreBackdropClick: true }"
+  aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-notify modal-danger  modal-dialog-centered" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading">Cancel Task</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancelDialog.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-3">
+            <p></p>
+            <p class="text-center">
+              <mdb-icon fas icon="ban" size="3x" class="mb-3 animated rotateIn"></mdb-icon>
+            </p>
+          </div>
+
+          <div class="col-9">
+            <h5>Are you sure want to cancel this taks?</h5>
+          </div>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" class="waves-effect"  (click)="rejectOrder()"
+        (click)="cancelDialog.hide()" 
+        mdbWavesEffect>Yes
+          <mdb-btn far icon="ban" class="ml-1"></mdb-btn>
+        </a>
+        <a type="button" mdbBtn color="danger" outline="true" class="waves-effect" mdbWavesEffect
+        (click)="cancelDialog.hide()"
+          data-dismiss="modal">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

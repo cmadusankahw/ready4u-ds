@@ -1,0 +1,117 @@
+<mat-sidenav-container class="sidenav-container" >
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+  
+      <!--profile pic-->
+      <div class="pd-img">
+        <img [src]="admin ? admin.profile_pic: './assets/images/spprofilephoto.jpg'" alt="sp-Pic" class="img-thumbnail" >
+        <h3 class="txt-white pd-top-min text-center"> {{admin ? admin.first_name + ' ' + admin.last_name: 'Loading..'}} </h3>
+      </div>
+  
+      <mat-nav-list style="padding-top:20px;">
+          <a class="txt-white row" mat-list-item [ngClass] ="home"
+          (click)="navHome()"  routerLink="/admin">
+              <div class="col-md-11 side-start " >
+                <mat-icon >home</mat-icon>
+                <span class="side-text">  Home </span>
+              </div>
+              <div class="ol-md-1 side-end">
+              <mat-icon >keyboard_arrow_right</mat-icon>
+            </div>
+          </a>
+  
+  
+  
+        <a class="txt-white row" mat-list-item  [ngClass] ="users"
+        (click)="navUsers()"   routerLink="/admin/users">
+          <div class="col-md-11 side-start">
+            <mat-icon >face</mat-icon>
+            <span class="side-text">  Manage Users </span>
+          </div>
+          <div class="ol-md-1 side-end">
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </div>
+        </a>
+
+        <a class="txt-white row" mat-list-item  [ngClass] ="payments"
+        (click)="navPayments()"   routerLink="/admin/payments">
+          <div class="col-md-11 side-start">
+            <mat-icon >business_centert</mat-icon>
+            <span class="side-text">  Payments </span>
+          </div>
+          <div class="ol-md-1 side-end">
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </div>
+        </a>
+  
+        <a class="txt-white row" mat-list-item  [ngClass] ="categories"
+        (click)="navCategories()"   routerLink="/admin/categories">
+          <div class="col-md-11 side-start">
+            <mat-icon >face</mat-icon>
+            <span class="side-text">  Service Categories </span>
+          </div>
+          <div class="ol-md-1 side-end">
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </div>
+        </a>
+
+        <a class="txt-white row" mat-list-item  [ngClass] ="reports"
+        (click)="navReports()"   routerLink="/admin/reports">
+          <div class="col-md-11 side-start">
+            <mat-icon >face</mat-icon>
+            <span class="side-text">  Report Dashboard </span>
+          </div>
+          <div class="ol-md-1 side-end">
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </div>
+        </a>
+  
+  
+  
+  
+  
+        <a class="txt-white row" mat-list-item [ngClass] ="profile"
+        (click)="navProfile()"  routerLink="/admin/profile">
+          <div class="col-md-11 side-start">
+            <mat-icon >face</mat-icon>
+            <span class="side-text">  My Profile</span>
+          </div>
+          <div class="ol-md-1 side-end">
+          <mat-icon >keyboard_arrow_right</mat-icon>
+        </div>
+        </a>
+  
+
+      </mat-nav-list>
+  
+    </mat-sidenav>
+  
+    <!--dashboard content-->
+    <mat-sidenav-content>
+      <mat-toolbar color="green" class="app-toolbar" *ngIf="(isHandset$ | async) === true">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <span style="font-size:16px;"> Open Menu </span>
+      </mat-toolbar>
+  
+      <!--dashboard content-->
+   
+        <router-outlet></router-outlet>
+ 
+      <!--end dashboard content-->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  
+  
+  
+  
+  

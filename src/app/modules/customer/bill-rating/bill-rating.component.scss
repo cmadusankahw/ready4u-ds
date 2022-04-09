@@ -1,0 +1,126 @@
+.pd-top{
+    padding-top:40px;
+  }
+  
+  .pd-top-min{
+    padding-top:25px;
+  }
+  
+  .left-top{
+    text-align: left;
+    font-weight: bold;
+    font-size:22px;
+    padding-left:15px;
+  }
+  
+  .right-top{
+    text-align: right;
+    font-weight: bold;
+    font-size:22px;
+    padding-right:15px;
+  }
+  
+  .amounts{
+    text-align:right;
+    font-weight:bold;
+    font-size:24px;
+  }
+  
+  .amounts-pay{
+    text-align:right;
+    font-weight:bold;
+    color:darkorchid;
+    font-size:24px;
+  }
+  
+  // table
+  
+  td, th{
+    font-size:22px;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-right:8px;
+  }
+  
+  th{
+    text-align:center;
+  }
+  
+  table{
+    width:100%;
+  }
+  
+  
+  @media only screen and (max-width: 600px){
+    .left-top{
+      text-align: center;
+      font-size:17px;
+      padding-left:0px;
+    }
+  
+    .right-top{
+      font-size:17px;
+      padding-right:0px;
+      text-align:center
+    }
+  
+    .amounts{
+  
+      font-size:19px;
+    }
+  
+    .amounts-pay{
+      font-size:19px;
+    }
+  
+    td,th {
+      font-size:17px;
+      padding-right:0px;
+    }
+  }
+  
+  .delivery-text{
+    padding-top:8px;
+    font-weight:bold;
+    color:darkslategray;
+    font-size: 22px;
+  }
+  
+  .delivery-text-sm{
+    padding-top:8px;
+    font-weight:bold;
+    columns: #666666;
+    font-size: 22px;
+  }
+  
+  
+  //star ratings
+  .star {
+    font-size:33px;
+    color: #f9ffa7;
+  }
+  
+  .filled {
+    color: #eeb90d;
+  
+  }
+  .bad {
+    color: #deb0b0;
+  }
+  .filled.bad {
+    color: #ffa91e;
+  }
+  
+  .rating{
+    text-align:center;
+  }
+  
+  .rt-btn{
+    border-radius:30px;
+    padding-bottom:7px;
+  }
+  
+  .additional-ratings{
+    padding-top:25px;
+  }
+    

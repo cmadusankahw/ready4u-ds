@@ -1,0 +1,99 @@
+<div class="pd-top-min mr-3 ml-3" >
+
+    <h4 >
+      <mat-icon>library_books</mat-icon>
+     <b> My Payments</b>
+    </h4>
+    <hr>
+    <div class="row">
+        <div class="col-md-2">
+         
+        </div>
+        <div class="col-md-4 text-center">
+            <h5 style="font-size:18px;">
+                <mat-icon>money</mat-icon>
+                <b>
+                Payment Due
+              </b></h5>
+             
+             <h5 style="color:darkgreen; font-weight:bold; font-size:22px; ">
+                Rs. {{totalDue}}
+              </h5>
+              <p> Due By: {{dueDate}}</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <mat-form-field style="width:95%;">
+                <input matInput type="number" 
+                required
+                name="amount"
+                #firmId="ngModel"
+                [(ngModel)] = "payAmount">
+                <mat-error *ngIf="firmId.invalid">Enter a valid amount</mat-error>
+              </mat-form-field>
+        </div>
+        <div class="col-md-2 text-center">
+            <button mdbBtn color="green" mdbWavesEffect class="btn btn-md" class="button" (click) = "makePayment(payAmount)"
+            style="border-radius:30px;">
+                Process Payment
+              </button>
+        </div>
+    </div>
+
+    
+   <div *ngIf="payment">   
+    <hr>
+    <div class="text-center">
+        <h4><b> Payment history :</b></h4>
+    </div> 
+    <div class="mat-elevation-z8" *ngIf="payment.payments.length">
+      <table class="table-responsive" mat-table [dataSource]="dataSource" matSort>
+    
+        <!-- ID Column -->
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Year </th>
+          <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+        </ng-container>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="month">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header > Month </th>
+                <td mat-cell *matCellDef="let row"> {{row.month}} </td>
+              </ng-container>
+    
+        <!-- Progress Column -->
+        <ng-container matColumnDef="paydate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Date Last Paid </th>
+          <td mat-cell *matCellDef="let row"> {{row.pay_date ? row.pay_date.slice(0,10) : 'Not Paid'}} </td>
+        </ng-container>
+
+        <!-- Color Column -->
+        <ng-container matColumnDef="due">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header > Due Amount </th>
+          <td mat-cell *matCellDef="let row" style="color:red;"> {{row.due}} </td>
+        </ng-container>
+        
+          <!-- Color Column -->
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Paid Amount </th>
+            <td mat-cell *matCellDef="let row" > {{row.amount}} </td>
+          </ng-container>
+    
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+    
+      <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]"></mat-paginator>
+    </div>
+    
+    <div class="text-center pd-top-min"  *ngIf="!payment.payments.length">
+      No Payments made...
+    </div>
+  </div>  
+  <div class="text-center">
+    No Payments made...
+  </div>
+</div>
+
+    

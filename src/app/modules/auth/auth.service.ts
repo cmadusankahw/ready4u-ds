@@ -54,7 +54,7 @@ export class AuthService {
   // user type between signup pages
   private userType = false;
 
-  public url = 'http://20.62.136.121:80/api/';
+  public url = 'https://ds-ready4u-as.azurewebsites.net:80/api/';
 
   // last signed user id
   private lastId: string;
@@ -87,7 +87,7 @@ export class AuthService {
   private headerDetails: {user_type: string, email: string};
 
    // socket connection
-   private socket = io('http://20.62.136.121:80');
+   private socket = io('https://ds-ready4u-as.azurewebsites.net:80');
 
    private chatUser = '';
 

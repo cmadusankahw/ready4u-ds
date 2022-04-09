@@ -25,7 +25,7 @@ export class ServiceService {
 
   private orders: Order[] = [];
 
-  url = 'http://20.62.136.121:80/api/';
+  url = 'https://ds-ready4u-as.azurewebsites.net:80/api/';
 
   private order: Order;
 

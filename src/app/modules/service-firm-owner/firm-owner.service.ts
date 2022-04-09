@@ -30,7 +30,7 @@ export class FirmOwnerService {
 
   private spNames: string[] = [];
 
-  public url = 'http://20.62.136.121:80/api/';
+  public url = 'https://ds-ready4u-as.azurewebsites.net:80/api/';
 
   constructor(
     private http: HttpClient,

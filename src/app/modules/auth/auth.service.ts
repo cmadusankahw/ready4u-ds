@@ -87,7 +87,7 @@ export class AuthService {
   private headerDetails: {user_type: string, email: string};
 
    // socket connection
-   private socket = io('http://localhost:3000');
+   private socket = io('http://20.62.136.121:80');
 
    private chatUser = '';
 

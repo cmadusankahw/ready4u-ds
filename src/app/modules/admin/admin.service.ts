@@ -28,7 +28,7 @@ export class AdminService {
   // recieved user payment
   payment: Payment;
 
-  public url = 'http://localhost:3000/api/';
+  public url = 'http://20.62.136.121:80/api/';
 
 
   constructor(

@@ -25,7 +25,7 @@ export class ServiceService {
 
   private orders: Order[] = [];
 
-  url = 'http://localhost:3000/api/';
+  url = 'http://20.62.136.121:80/api/';
 
   private order: Order;
 

@@ -54,7 +54,7 @@ export class AuthService {
   // user type between signup pages
   private userType = false;
 
-  public url = 'http://localhost:3000/api/';
+  public url = 'http://20.62.136.121:80/api/';
 
   // last signed user id
   private lastId: string;

@@ -30,7 +30,7 @@ export class FirmOwnerService {
 
   private spNames: string[] = [];
 
-  public url = 'http://localhost:3000/api/';
+  public url = 'http://20.62.136.121:80/api/';
 
   constructor(
     private http: HttpClient,
